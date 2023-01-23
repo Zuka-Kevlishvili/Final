@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         }
 
         buttonProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_editProfileFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
     }
 }

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -39,6 +41,14 @@ class SecondFragment : Fragment() {
             recyclerView.setHasFixedSize(true)
             workoutsAdapter = MyWorkoutsAdapter(workoutsArrayList)
             recyclerView.adapter = workoutsAdapter
+            workoutsAdapter.setOnItemClickListener(object : MyWorkoutsAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val bundle = Bundle()
+                    bundle.putString("workoutType", "$position")
+                    findNavController().navigate(R.id.action_secondFragment_to_thirdFragment, bundle)
+                }
+
+            })
         } else if (contentType == "nutrition") {
             nutritionDataInit()
             val layoutManager = LinearLayoutManager(context)
@@ -47,6 +57,13 @@ class SecondFragment : Fragment() {
             recyclerView.setHasFixedSize(true)
             nutritionAdapter = MyNutritionAdapter(nutritionArrayList)
             recyclerView.adapter = nutritionAdapter
+            nutritionAdapter.setOnItemClickListener(object : MyNutritionAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val bundle = Bundle()
+                    bundle.putString("nutritionType", "$position")
+                    findNavController().navigate(R.id.action_secondFragment_to_fourthFragment, bundle)
+                }
+            })
         }
     }
 
@@ -80,6 +97,8 @@ class SecondFragment : Fragment() {
             val workouts = Workouts(imageId[i], heading[i])
             workoutsArrayList.add(workouts)
         }
+
+
     }
 
     private fun nutritionDataInit() {
