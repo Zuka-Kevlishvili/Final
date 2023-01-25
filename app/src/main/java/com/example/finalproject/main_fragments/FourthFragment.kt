@@ -23,6 +23,8 @@ class FourthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val nutritionType = arguments?.getString("nutritionType")
         val txt = view.findViewById<TextView>(R.id.nutrition_text)
+
+        //display different content depending on which nutrition plan was created
         if (nutritionType == "0") {
             txt.text = "Bulking Plan"
         } else if (nutritionType == "1") {

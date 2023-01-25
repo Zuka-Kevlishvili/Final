@@ -16,11 +16,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.finalproject.R
 
 
-class ExerciseFragment3 : Fragment() {
+class ExerciseFragment3 : Fragment(), StopCallback {
 
     private lateinit var countDownTimer: CountDownTimer
 
@@ -42,10 +43,9 @@ class ExerciseFragment3 : Fragment() {
         return view
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val txt = view.findViewById<TextView>(R.id.exercise3)
-        val btnStart = view.findViewById<Button>(R.id.ex3_start)
-        val btnStop = view.findViewById<Button>(R.id.ex3_stop)
 
         txt.text = "Third Exercise"
     }
@@ -53,6 +53,7 @@ class ExerciseFragment3 : Fragment() {
     private fun startCountdownTimer() {
         val timeInMillis = 60 * 1000  // 60 seconds
         countDownTimer = object : CountDownTimer(timeInMillis.toLong(), 1000) {
+            @RequiresApi(Build.VERSION_CODES.M)
             override fun onTick(millisUntilFinished: Long) {
                 // update the notification with the remaining time
                 updateNotification(millisUntilFinished)
@@ -65,11 +66,12 @@ class ExerciseFragment3 : Fragment() {
         }.start()
     }
 
-    private fun stopCountdownTimer() {
+    override fun stopCountdownTimer() {
         countDownTimer.cancel()
         cancelNotification()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun updateNotification(timeRemaining: Long) {
         val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -89,9 +91,9 @@ class ExerciseFragment3 : Fragment() {
     }
 
     class StopReceiver : BroadcastReceiver() {
+        private var callback: StopCallback? = null
         override fun onReceive(context: Context, intent: Intent) {
-            val myFragment = context as ExerciseFragment3
-            myFragment.stopCountdownTimer()
+            callback?.stopCountdownTimer()
         }
     }
 

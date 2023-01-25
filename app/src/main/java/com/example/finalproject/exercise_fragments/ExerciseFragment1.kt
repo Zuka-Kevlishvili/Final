@@ -19,11 +19,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.finalproject.R
 
+interface StopCallback {
+    fun stopCountdownTimer()
+}
 
-class ExerciseFragment1 : Fragment() {
+class ExerciseFragment1 : Fragment(), StopCallback {
     private lateinit var countDownTimer: CountDownTimer
 
     override fun onCreateView(
@@ -44,15 +48,18 @@ class ExerciseFragment1 : Fragment() {
         return view
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val txt = view.findViewById<TextView>(R.id.exercise1)
 
         txt.text = "First Exercise"
     }
 
+    // starting countdown timer using a notification
     private fun startCountdownTimer() {
         val timeInMillis = 60 * 1000  // 60 seconds
         countDownTimer = object : CountDownTimer(timeInMillis.toLong(), 1000) {
+            @RequiresApi(Build.VERSION_CODES.M)
             override fun onTick(millisUntilFinished: Long) {
                 // update the notification with the remaining time
                 updateNotification(millisUntilFinished)
@@ -65,11 +72,14 @@ class ExerciseFragment1 : Fragment() {
         }.start()
     }
 
-    private fun stopCountdownTimer() {
+    // stop countdown timer
+    override fun stopCountdownTimer() {
         countDownTimer.cancel()
         cancelNotification()
     }
 
+    // update countdown timer
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun updateNotification(timeRemaining: Long) {
         val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -88,13 +98,15 @@ class ExerciseFragment1 : Fragment() {
         notificationManager.notify(1, builder.build())
     }
 
+    // broadcast receiver for stopping a countdown timer
     class StopReceiver : BroadcastReceiver() {
+        private var callback: StopCallback? = null
         override fun onReceive(context: Context, intent: Intent) {
-            val myFragment = context as ExerciseFragment1
-            myFragment.stopCountdownTimer()
+            callback?.stopCountdownTimer()
         }
     }
 
+    // creating notification channel
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
@@ -107,6 +119,7 @@ class ExerciseFragment1 : Fragment() {
         }
     }
 
+    // canceling notification
     private fun cancelNotification() {
         val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.cancel(1)

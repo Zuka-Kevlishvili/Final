@@ -28,14 +28,15 @@ class ProfileFragment : Fragment() {
 
         val context = activity
 
-        var db = context?.let { DatabaseHandler(it) }
-        var data = db?.readData()
+        //get the last input in the data
+        val db = context?.let { DatabaseHandler(it) }
+        val data = db?.readData()
         dataResult.text = ""
         if (data != null) {
-            dataResult.append("Name: " + data.get(data.size-1).name + "\n" + "Age: " + data.get(data.size-1).age + "\n" + "Height: " + data.get(data.size-1).height + "\n" + "Weight: " + data.get(data.size-1).weight + "\n")
+            dataResult.append("Name: " + data[data.size-1].name + "\n" + "Age: " + data[data.size-1].age + "\n" + "Height: " + data[data.size-1].height + "\n" + "Weight: " + data[data.size-1].weight + "\n")
         }
 
-
+        // navigate to EditProfileFragment when edit button is pressed
         editButton.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }

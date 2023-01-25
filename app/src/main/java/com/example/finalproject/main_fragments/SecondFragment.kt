@@ -23,8 +23,8 @@ class SecondFragment : Fragment() {
     private lateinit var workoutsArrayList: ArrayList<Workouts>
     private lateinit var nutritionArrayList: ArrayList<Nutrition>
 
-    lateinit var imageId : Array<Int>
-    lateinit var heading : Array<String>
+    private lateinit var imageId : Array<Int>
+    private lateinit var heading : Array<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +35,8 @@ class SecondFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // read which button was pressed using bundle and display different recyclerView depending on that
         val contentType = arguments?.getString("contentType")
         if (contentType == "workouts") {
             workoutsDataInit()
@@ -45,6 +47,8 @@ class SecondFragment : Fragment() {
             workoutsAdapter = MyWorkoutsAdapter(workoutsArrayList)
             recyclerView.adapter = workoutsAdapter
             workoutsAdapter.setOnItemClickListener(object : MyWorkoutsAdapter.OnItemClickListener {
+
+                //when one of the items are clicked nav to the third fragment and put in extra bundle to discover which item was pressed
                 override fun onItemClick(position: Int) {
                     val bundle = Bundle()
                     bundle.putString("workoutType", "$position")
@@ -71,8 +75,9 @@ class SecondFragment : Fragment() {
         }
     }
 
+    // workouts data initialization for recyclerView
     private fun workoutsDataInit() {
-        workoutsArrayList = arrayListOf<Workouts>()
+        workoutsArrayList = arrayListOf()
         imageId = arrayOf(
             R.drawable.chest,
             R.drawable.abs,
@@ -105,8 +110,9 @@ class SecondFragment : Fragment() {
 
     }
 
+    // nutrition data initialization for recyclerView
     private fun nutritionDataInit() {
-        nutritionArrayList = arrayListOf<Nutrition>()
+        nutritionArrayList = arrayListOf()
         imageId = arrayOf(
             R.drawable.bulk,
             R.drawable.cut,

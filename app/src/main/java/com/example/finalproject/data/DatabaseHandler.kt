@@ -7,13 +7,13 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 
-val DATABASE_NAME = "MyDB"
-val TABLE_NAME = "User"
-val COL_NAME = "name"
-val COL_AGE = "age"
-val COL_HEIGHT = "height"
-val COL_WEIGHT = "weight"
-val COL_ID = "id"
+const val DATABASE_NAME = "MyDB"
+const val TABLE_NAME = "User"
+const val COL_NAME = "name"
+const val COL_AGE = "age"
+const val COL_HEIGHT = "height"
+const val COL_WEIGHT = "weight"
+const val COL_ID = "id"
 
 class DatabaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,1){
     override fun onCreate(db: SQLiteDatabase?) {
@@ -22,7 +22,7 @@ class DatabaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
                 COL_NAME +" VARCHAR(256),"+
                 COL_AGE +" INTEGER,"+
                 COL_HEIGHT +" INTEGER,"+
-                COL_WEIGHT +" INTEGER)";
+                COL_WEIGHT +" INTEGER)"
 
         db?.execSQL(createTable)
     }
@@ -33,14 +33,14 @@ class DatabaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
 
     fun insertData (user: User) {
         val db = this.writableDatabase
-        var cv = ContentValues()
+        val cv = ContentValues()
         cv.put(COL_NAME,user.name)
         cv.put(COL_AGE,user.age)
         cv.put(COL_HEIGHT,user.height)
         cv.put(COL_WEIGHT,user.weight)
-        var result = db.insert(TABLE_NAME,null,cv)
+        val result = db.insert(TABLE_NAME,null,cv)
 
-        if (result == -1.toLong()) {
+        if (result == (-1).toLong()) {
             Toast.makeText(context,"Saving data failed", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(context,"Saving data was successful", Toast.LENGTH_SHORT).show()
@@ -49,7 +49,7 @@ class DatabaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
 
     @SuppressLint("Range")
     fun readData () : MutableList<User> {
-        var list : MutableList<User> = ArrayList()
+        val list : MutableList<User> = ArrayList()
 
         val db = this.readableDatabase
         val query = "Select * from " + TABLE_NAME
@@ -57,7 +57,7 @@ class DatabaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
 
         if(result.moveToFirst()) {
             do {
-                var user = User()
+                val user = User()
                 user.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
                 user.name = result.getString(result.getColumnIndex(COL_NAME))
                 user.age = result.getString(result.getColumnIndex(COL_AGE)).toInt()

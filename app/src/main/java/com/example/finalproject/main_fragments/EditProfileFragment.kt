@@ -32,17 +32,19 @@ class EditProfileFragment : Fragment() {
 
         val context = activity
 
+        // on save button click if none of the fields are empty insert data in db
         saveButton.setOnClickListener {
 
-            if (editName.text.toString().length > 0 &&
-                    editAge.text.toString().length > 0 &&
-                    editHeight.text.toString().length > 0 &&
-                    editWeight.text.toString().length > 0) {
+            if (editName.text.toString().isNotEmpty() &&
+                editAge.text.toString().isNotEmpty() &&
+                editHeight.text.toString().isNotEmpty() &&
+                editWeight.text.toString().isNotEmpty()
+            ) {
 
-                var user = User(editName.text.toString(), editAge.text.toString().toInt(),
+                val user = User(editName.text.toString(), editAge.text.toString().toInt(),
                     editHeight.text.toString().toInt(), editWeight.text.toString().toInt())
 
-                var db = context?.let { it1 -> DatabaseHandler(it1) }
+                val db = context?.let { it1 -> DatabaseHandler(it1) }
 
                 db?.insertData(user)
 

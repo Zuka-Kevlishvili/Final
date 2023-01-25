@@ -73,6 +73,8 @@ class ThirdFragment : Fragment() {
 
         val workoutType = arguments?.getString("workoutType")
         val txt = view.findViewById<TextView>(R.id.workout_text)
+
+        // display different content depending on which item was pressed
         if (workoutType == "0") {
             txt.text = "Chest Workouts"
         } else if (workoutType == "1") {
