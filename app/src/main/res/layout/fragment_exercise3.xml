@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".exercise_fragments.ExerciseFragment3">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/exercise3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20sp"
+        android:text="Workout Fragment 3"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/ex3_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="70dp"/>
+
+    <Button
+        android:id="@+id/ex3_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="70dp"/>
+
+</FrameLayout>

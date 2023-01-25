@@ -1,4 +1,4 @@
-package com.example.finalproject
+package com.example.finalproject.data
 
 import android.annotation.SuppressLint
 import android.content.ContentValues

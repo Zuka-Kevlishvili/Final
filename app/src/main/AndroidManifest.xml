@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,6 +27,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <receiver android:name=".exercise_fragments.ExerciseFragment1$StopReceiver" />
+        <receiver android:name=".exercise_fragments.ExerciseFragment2$StopReceiver" />
+        <receiver android:name=".exercise_fragments.ExerciseFragment3$StopReceiver" />
+
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
-package com.example.finalproject
+package com.example.finalproject.main_fragments
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import com.example.finalproject.data.DatabaseHandler
+import com.example.finalproject.R
 
 class ProfileFragment : Fragment() {
 

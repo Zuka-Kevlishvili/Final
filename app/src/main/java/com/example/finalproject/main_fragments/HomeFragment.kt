@@ -1,15 +1,16 @@
-package com.example.finalproject
+package com.example.finalproject.main_fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
-import androidx.navigation.findNavController
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.finalproject.R
 
 class HomeFragment : Fragment() {
 
@@ -24,7 +25,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val buttonWorkouts = view.findViewById<ImageButton>(R.id.button_workouts)
         val buttonNutrition = view.findViewById<ImageButton>(R.id.button_nutrition)
-        val buttonProfile = view.findViewById<Button>(R.id.button_profile)
+        val buttonProfile = view.findViewById<ImageButton>(R.id.button_profile)
 
 
         buttonWorkouts.setOnClickListener {
@@ -41,6 +42,21 @@ class HomeFragment : Fragment() {
 
         buttonProfile.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
+
+        buttonProfile.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    // change the button's background color or image
+                    v.animate().scaleX(1.1f).scaleY(1.1f).setDuration(100).start()
+                }
+                MotionEvent.ACTION_UP -> {
+                    // change the button's background color or image back to normal
+                    v.animate().scaleX(1f).scaleY(1f).setDuration(100).start()
+                    v.performClick()
+                }
+            }
+            true
         }
     }
 }

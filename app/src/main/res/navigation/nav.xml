@@ -8,8 +8,8 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.finalproject.HomeFragment"
-        android:label="Home"
+        android:name="com.example.finalproject.main_fragments.HomeFragment"
+        android:label="FitApp"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_secondFragment"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/Choose"
-        android:name="com.example.finalproject.SecondFragment"
+        android:name="com.example.finalproject.main_fragments.SecondFragment"
         android:label="Choose"
         tools:layout="@layout/fragment_second">
         <action
@@ -35,16 +35,25 @@
     </fragment>
     <fragment
         android:id="@+id/Workouts"
-        android:name="com.example.finalproject.ThirdFragment"
+        android:name="com.example.finalproject.main_fragments.ThirdFragment"
         android:label="Workouts"
         tools:layout="@layout/fragment_third">
         <action
             android:id="@+id/action_thirdFragment_to_secondFragment"
             app:destination="@id/Choose" />
+        <action
+            android:id="@+id/action_Workouts_to_exerciseFragment1"
+            app:destination="@id/exerciseFragment1" />
+        <action
+            android:id="@+id/action_Workouts_to_exerciseFragment2"
+            app:destination="@id/exerciseFragment2" />
+        <action
+            android:id="@+id/action_Workouts_to_exerciseFragment3"
+            app:destination="@id/exerciseFragment3" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.finalproject.ProfileFragment"
+        android:name="com.example.finalproject.main_fragments.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -56,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.finalproject.EditProfileFragment"
+        android:name="com.example.finalproject.main_fragments.EditProfileFragment"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile">
         <action
@@ -65,11 +74,38 @@
     </fragment>
     <fragment
         android:id="@+id/Plans"
-        android:name="com.example.finalproject.FourthFragment"
+        android:name="com.example.finalproject.main_fragments.FourthFragment"
         android:label="Plans"
         tools:layout="@layout/fragment_fourth">
         <action
             android:id="@+id/action_fourthFragment_to_secondFragment"
             app:destination="@id/Choose" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFragment1"
+        android:name="com.example.finalproject.exercise_fragments.ExerciseFragment1"
+        android:label="fragment_exercise1"
+        tools:layout="@layout/fragment_exercise1" >
+        <action
+            android:id="@+id/action_exerciseFragment1_to_Workouts"
+            app:destination="@id/Workouts" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFragment2"
+        android:name="com.example.finalproject.exercise_fragments.ExerciseFragment2"
+        android:label="fragment_exercise2"
+        tools:layout="@layout/fragment_exercise2" >
+        <action
+            android:id="@+id/action_exerciseFragment2_to_Workouts"
+            app:destination="@id/Workouts" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFragment3"
+        android:name="com.example.finalproject.exercise_fragments.ExerciseFragment3"
+        android:label="fragment_exercise3"
+        tools:layout="@layout/fragment_exercise3" >
+        <action
+            android:id="@+id/action_exerciseFragment3_to_Workouts"
+            app:destination="@id/Workouts" />
     </fragment>
 </navigation>

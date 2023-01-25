@@ -1,15 +1,18 @@
-package com.example.finalproject
+package com.example.finalproject.main_fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
+import com.example.finalproject.*
+import com.example.finalproject.adapters.MyNutritionAdapter
+import com.example.finalproject.adapters.MyWorkoutsAdapter
+import com.example.finalproject.data.Nutrition
+import com.example.finalproject.data.Workouts
 
 
 class SecondFragment : Fragment() {
@@ -57,7 +60,8 @@ class SecondFragment : Fragment() {
             recyclerView.setHasFixedSize(true)
             nutritionAdapter = MyNutritionAdapter(nutritionArrayList)
             recyclerView.adapter = nutritionAdapter
-            nutritionAdapter.setOnItemClickListener(object : MyNutritionAdapter.OnItemClickListener {
+            nutritionAdapter.setOnItemClickListener(object :
+                MyNutritionAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
                     val bundle = Bundle()
                     bundle.putString("nutritionType", "$position")

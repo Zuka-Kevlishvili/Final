@@ -1,4 +1,4 @@
-package com.example.finalproject
+package com.example.finalproject.main_fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.finalproject.R
 
 class FourthFragment : Fragment() {
 
