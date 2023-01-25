@@ -1,6 +1,9 @@
 # FitApp
-
-  Fitness application, which mainly consists of 2 parts, workout plans and nutrition.
+  
+  Fitness app that aims to provide users with workouts and diet plans to achieve their goals within
+the shortest periods of time and with an optimized plans.
+  
+  Mainly consists of 2 parts, workout plans and nutrition.
 
   You can find different exercises for different parts of body and nutrition plans for 
 different diet styles for differernt goals.
