@@ -37,7 +37,7 @@ class ProfileFragment : Fragment() {
                 dataResult.append("Name: " + data[data.size - 1].name + "\n" + "Age: " + data[data.size - 1].age + "\n" + "Height: " + data[data.size - 1].height + "\n" + "Weight: " + data[data.size - 1].weight + "\n")
             }
         } else {
-            dataResult.text = "Press edit button to input your data."
+            dataResult.text = "Please press Edit button to input your data."
         }
         // navigate to EditProfileFragment when edit button is pressed
         editButton.setOnClickListener {
