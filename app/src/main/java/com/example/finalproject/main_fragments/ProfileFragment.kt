@@ -32,8 +32,11 @@ class ProfileFragment : Fragment() {
         val db = context?.let { DatabaseHandler(it) }
         val data = db?.readData()
         dataResult.text = ""
+
         if (data != null) {
             dataResult.append("Name: " + data[data.size-1].name + "\n" + "Age: " + data[data.size-1].age + "\n" + "Height: " + data[data.size-1].height + "\n" + "Weight: " + data[data.size-1].weight + "\n")
+        } else {
+            dataResult.append("Name: " + "\n" + "Age: " + "\n" + "Height: " + "\n" + "Weight: " + "\n")
         }
 
         // navigate to EditProfileFragment when edit button is pressed
